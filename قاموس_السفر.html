@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>قاموس درس السفر</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E✈️%3C/text%3E%3C/svg%3E">
+<style>
+:root{--p:#0284c7;--p2:#38bdf8;--bg:#e0f2fe;--card:#fff;--tx:#0c3a52;--mu:#4b7a93;--ln:#bae6fd;--soft:#f0f9ff;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b1e2b;--card:#12303f;--tx:#e6f4fb;--mu:#9cc3d6;--ln:#1f4b61;--soft:#0f2938;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0b1e2b;--card:#12303f;--tx:#e6f4fb;--mu:#9cc3d6;--ln:#1f4b61;--soft:#0f2938;color-scheme:dark}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:var(--bg);color:var(--tx);min-height:100vh}
+.hero{background:linear-gradient(135deg,#0369a1,#0ea5e9,#38bdf8);padding:30px 20px 26px;text-align:center;position:relative;overflow:hidden;color:#fff}
+.hero::before{content:'';position:absolute;top:-30px;left:-30px;width:120px;height:120px;border-radius:50%;background:rgba(255,255,255,.12)}
+.hero::after{content:'';position:absolute;bottom:-20px;right:-20px;width:80px;height:80px;border-radius:50%;background:rgba(255,255,255,.1)}
+.hero .i{font-size:46px;display:block;margin-bottom:8px}
+.hero h1{font-size:26px;margin-bottom:6px;text-shadow:0 2px 8px rgba(0,0,0,.2)}
+.hero p{font-size:14px;opacity:.92;margin-bottom:14px}
+.hb{background:rgba(255,255,255,.2);color:#fff;border:1.5px solid rgba(255,255,255,.55);padding:8px 20px;border-radius:50px;font-size:14px;cursor:pointer;font-family:inherit;margin:3px}
+.hb:hover{background:rgba(255,255,255,.35)}
+.controls{padding:14px 18px;background:var(--card);border-bottom:1px solid var(--ln);position:sticky;top:env(safe-area-inset-top,0px);z-index:100;box-shadow:0 2px 12px rgba(2,132,199,.12)}
+.sw{position:relative;margin-bottom:10px}
+.sw input{width:100%;padding:10px 44px 10px 16px;border:1.5px solid var(--ln);border-radius:50px;font-size:14px;outline:none;background:var(--soft);color:var(--tx);font-family:inherit}
+.sw input:focus{border-color:var(--p)}
+.sw span{position:absolute;right:14px;top:50%;transform:translateY(-50%)}
+.count{text-align:center;font-size:12px;color:var(--mu);margin-bottom:8px}
+.fr{display:flex;gap:7px;flex-wrap:wrap;justify-content:center}
+.ft{padding:6px 14px;border-radius:50px;border:1.5px solid var(--ln);background:var(--soft);color:var(--tx);cursor:pointer;font-size:13px;font-family:inherit}
+.ft.on{background:linear-gradient(135deg,var(--p),var(--p2));color:#fff;border-color:transparent;box-shadow:0 3px 10px rgba(2,132,199,.35)}
+.model{margin:18px 18px 0;background:var(--card);border:1.5px dashed var(--p2);border-radius:18px;padding:16px 18px}
+.model h2{font-size:15px;color:var(--p);margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.model p{font-size:17px;line-height:2.1}
+.model mark{background:rgba(56,189,248,.28);color:inherit;border-radius:6px;padding:0 3px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:14px;padding:18px}
+.card{background:var(--card);border-radius:18px;border:1.5px solid var(--ln);padding:18px 12px 14px;text-align:center;cursor:pointer;transition:all .2s;position:relative;box-shadow:0 2px 8px rgba(2,132,199,.08)}
+.card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(2,132,199,.2);border-color:var(--p2)}
+.card.playing{border-color:var(--p);box-shadow:0 0 0 3px rgba(2,132,199,.25)}
+.dot{position:absolute;top:9px;left:9px;width:10px;height:10px;border-radius:50%}
+.add{position:absolute;top:6px;right:8px;font-size:10px;font-weight:700;color:#b45309;background:#fef3c7;border-radius:50px;padding:1px 7px}
+.ic{width:56px;height:56px;border-radius:50%;margin:0 auto 10px;display:flex;align-items:center;justify-content:center;font-size:28px;background:linear-gradient(135deg,#e0f2fe,#bae6fd)}
+.w{font-size:18px;font-weight:700;margin-bottom:5px;line-height:1.5}
+.en{display:inline-block;padding:3px 12px;border-radius:50px;font-size:12px;font-weight:600;color:#fff;background:linear-gradient(135deg,var(--p),var(--p2));margin-bottom:8px;transition:filter .2s}
+body.quiz .en:not(.show){filter:blur(6px)}
+.ex{font-size:13px;color:var(--mu);line-height:1.8;min-height:40px}
+.ab{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--p),var(--p2));border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;margin:8px auto 0;box-shadow:0 2px 8px rgba(2,132,199,.35)}
+.ab svg{width:15px;height:15px;fill:#fff}
+.ab.pl{animation:pr .6s ease-in-out infinite}
+@keyframes pr{0%,100%{box-shadow:0 0 0 0 rgba(2,132,199,.5)}50%{box-shadow:0 0 0 8px rgba(2,132,199,0)}}
+.sd{grid-column:1/-1;display:flex;align-items:center;gap:10px;margin:6px 0 0}
+.sd span{font-size:14px;font-weight:700;color:var(--p);white-space:nowrap}
+.sd::before,.sd::after{content:'';flex:1;height:1.5px;background:var(--ln)}
+.nr{grid-column:1/-1;text-align:center;padding:36px;color:var(--mu)}
+.lg{padding:10px 18px;display:flex;flex-wrap:wrap;gap:10px;justify-content:center;background:var(--card);border-bottom:1px solid var(--ln);font-size:11px;color:var(--mu)}
+.lg i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-left:5px}
+footer{text-align:center;padding:20px;font-size:12px;color:var(--mu)}
+</style>
+</head>
+<body>
+<div class="hero">
+  <span class="i">✈️</span>
+  <h1>قاموسُ دَرسِ السَّفَرِ 🌍</h1>
+  <p>الصف السادس · اضغط على 🔊 لتسمع الكلمة والجملة · ⭐ إضافة = كلمة تساعدك</p>
+  <button class="hb" onclick="speak('مرحباً، هذا اختبار للصوت. قاموس درس السفر.')">🔊 اختبار الصوت</button>
+  <button class="hb" id="qb" onclick="toggleQuiz()">🎯 وضع التحدي</button>
+</div>
+
+<div class="controls">
+  <div class="sw"><span>🔍</span><input id="q" placeholder="ابحث عن كلمة..." oninput="render()"></div>
+  <div class="count" id="cnt"></div>
+  <div class="fr" id="fr"></div>
+</div>
+<div class="lg" id="lg"></div>
+
+<div class="model">
+  <h2><span>📝 فقرة نموذجية: السفر</span><button class="hb" style="background:var(--p);border:none;padding:6px 16px" onclick="speak(MODEL)">🔊 استمع</button></h2>
+  <p id="mp"></p>
+</div>
+
+<div class="grid" id="g"></div>
+<footer>✈️ قاموس السفر · الصف السادس · AE · 2026</footer>
+
+<script>
+const CATS={
+ all:{l:'🔮 الكل'},
+ past:{l:'⏳ الماضي والحاضر',c:'#0284c7'},
+ move:{l:'🚌 وسائل التنقل',c:'#f59e0b'},
+ why:{l:'🌍 لماذا نسافر؟',c:'#059669'},
+ op:{l:'💭 عبارات الرأي',c:'#ec4899'},
+ things:{l:'🎒 أحتاج في السفر',c:'#7c3aed'},
+ verb:{l:'🏃 أفعال السفر',c:'#6366f1'},
+ conn:{l:'🔗 أدوات الربط',c:'#dc2626'}
+};
+const ORDER=['past','move','why','op','things','verb','conn'];
+const TITLES={past:'⏳ في الماضي وفي الحاضر',move:'🚌 كيف ننتقل؟',why:'🌍 لماذا نسافر؟ فوائد السفر',op:'💭 أعبّر عن رأيي',things:'🎒 أشياء أحتاجها في السفر ⭐',verb:'🏃 ماذا أفعل في السفر؟ ⭐',conn:'🔗 أربط جُمَلي ⭐'};
+// [عربي, English, جملة, أيقونة, إضافة؟]
+const D={
+past:[
+['فِي الْمَاضِي','In the past','فِي الْمَاضِي كَانَ السَّفَرُ صَعْبًا.','⏳'],
+['فِي الْحَاضِرِ','Nowadays / At present','فِي الْحَاضِرِ السَّفَرُ أَسْهَلُ.','📱'],
+['صَعْب','Difficult','كَانَ السَّفَرُ قَدِيمًا صَعْبًا.','😓'],
+['أَسْهَل','Easier','السَّفَرُ الْيَوْمَ أَسْهَلُ مِنَ الْمَاضِي.','😊'],
+['الْجُهْد','Effort','يَحْتَاجُ السَّفَرُ الْقَدِيمُ إِلَى جُهْدٍ كَبِيرٍ.','💪'],
+['الْوَقْت','Time','الطَّائِرَةُ تُوَفِّرُ الْوَقْتَ.','⏰'],
+['تَطَوُّرُ التِّكْنُولُوجْيَا','Technological development','تَطَوُّرُ التِّكْنُولُوجْيَا جَعَلَ حَيَاتَنَا أَسْهَلَ.','💻'],
+['نَسْتَخْدِم','We use','نَسْتَخْدِمُ الْهَاتِفَ لِحَجْزِ التَّذْكِرَةِ.','📲']],
+move:[
+['الطَّائِرَات','Airplanes','نُسَافِرُ بِالطَّائِرَاتِ إِلَى بُلْدَانٍ بَعِيدَةٍ.','✈️'],
+['السَّيَّارَات','Cars','نَذْهَبُ بِالسَّيَّارَاتِ إِلَى الْمَدِينَةِ.','🚗'],
+['الْحَافِلَات','Buses','تَنْقُلُ الْحَافِلَاتُ النَّاسَ كُلَّ يَوْمٍ.','🚌'],
+['الِانْتِقَال','Moving / Travelling','الِانْتِقَالُ بِالطَّائِرَةِ سَرِيعٌ.','🔄'],
+['مِنْ مَكَانٍ إِلَى آخَر','From one place to another','نَنْتَقِلُ مِنْ مَكَانٍ إِلَى آخَرَ.','📍'],
+['الْقِطَار','Train','الْقِطَارُ وَسِيلَةٌ مُرِيحَةٌ لِلسَّفَرِ.','🚆',1],
+['السَّفِينَة','Ship','تُسَافِرُ السَّفِينَةُ فَوْقَ الْبَحْرِ.','🚢',1],
+['الْمَطَار','Airport','نَصِلُ إِلَى الْمَطَارِ قَبْلَ الرِّحْلَةِ.','🛫',1]],
+why:[
+['السَّفَر','Travel','أُحِبُّ السَّفَرَ مَعَ عَائِلَتِي.','🧳'],
+['مُهِمَّة','Important','الرِّحْلَةُ مُهِمَّةٌ لِلطُّلَّابِ.','⭐'],
+['فَوَائِد','Benefits','لِلسَّفَرِ فَوَائِدُ كَثِيرَةٌ.','🎁'],
+['اكْتِشَاف','Discovering','اكْتِشَافُ أَمَاكِنَ جَدِيدَةٍ مُمْتِعٌ.','🔭'],
+['ثَقَافَاتٌ مُخْتَلِفَة','Different cultures','نَتَعَرَّفُ فِي السَّفَرِ عَلَى ثَقَافَاتٍ مُخْتَلِفَةٍ.','🌍'],
+['التَّرْفِيهُ عَنِ النَّفْس','Recreation','نُسَافِرُ لِلتَّرْفِيهِ عَنِ النَّفْسِ.','🎡'],
+['تَحْصِيلُ الْعِلْم','Gaining knowledge','تَحْصِيلُ الْعِلْمِ مِنْ فَوَائِدِ السَّفَرِ.','📚'],
+['اكْتِسَابُ الْخِبْرَات','Gaining experience','اكْتِسَابُ الْخِبْرَاتِ يَجْعَلُنَا أَقْوَى.','🎓'],
+['تَكْوِينُ صَدَاقَاتٍ جَدِيدَة','Making new friends','تَكْوِينُ صَدَاقَاتٍ جَدِيدَةٍ يُسْعِدُنِي.','🤝'],
+['الْوُجْهَاتُ السِّيَاحِيَّة','Tourist destinations','دُبَيُّ مِنَ الْوُجْهَاتِ السِّيَاحِيَّةِ الْمَشْهُورَةِ.','🏝️']],
+op:[
+['مِنْ وَجْهَةِ نَظَرِي','From my point of view','مِنْ وَجْهَةِ نَظَرِي، السَّفَرُ مُمْتِعٌ.','👓'],
+['فِي رَأْيِي','In my opinion','فِي رَأْيِي، السَّفَرُ يُعَلِّمُنَا الْكَثِيرَ.','💭',1],
+['أُحِبُّ السَّفَرَ لِأَنَّ','I love travelling because','أُحِبُّ السَّفَرَ لِأَنَّنِي أَكْتَشِفُ أَمَاكِنَ جَدِيدَةً.','❤️',1],
+['أَتَّفِقُ مَعَكَ','I agree with you','أَتَّفِقُ مَعَكَ، السَّفَرُ مُفِيدٌ.','👍',1]],
+things:[
+['جَوَازُ السَّفَر','Passport','أُخْرِجُ جَوَازَ السَّفَرِ فِي الْمَطَارِ.','🛂',1],
+['التَّذْكِرَة','Ticket','حَجَزْتُ التَّذْكِرَةَ عَلَى الْهَاتِفِ.','🎫',1],
+['الْحَقِيبَة','Suitcase / Bag','أَضَعُ مَلَابِسِي فِي الْحَقِيبَةِ.','🧳',1],
+['الْفُنْدُق','Hotel','نَنَامُ فِي الْفُنْدُقِ.','🏨',1],
+['الْخَرِيطَة','Map','أَنْظُرُ إِلَى الْخَرِيطَةِ لِأَجِدَ الطَّرِيقَ.','🗺️',1],
+['السَّائِح','Tourist','يَزُورُ السَّائِحُ الْمَعَالِمَ.','📸',1]],
+verb:[
+['أُسَافِر','I travel','أُسَافِرُ فِي الْعُطْلَةِ.','🌴',1],
+['أَزُور','I visit','أَزُورُ الْمَتَاحِفَ وَالْأَسْوَاقَ.','🏛️',1],
+['أَحْجِز','I book','أَحْجِزُ الْفُنْدُقَ قَبْلَ السَّفَرِ.','📅',1],
+['أَكْتَشِف','I discover','أَكْتَشِفُ أَمَاكِنَ جَمِيلَةً.','🔍',1],
+['أَتَعَلَّم','I learn','أَتَعَلَّمُ كَلِمَاتٍ جَدِيدَةً.','✏️',1]],
+conn:[
+['لِأَنَّ','Because','أُسَافِرُ لِأَنَّنِي أُحِبُّ الِاكْتِشَافَ.','❓',1],
+['لِذَلِكَ','Therefore / So','السَّفَرُ مُفِيدٌ، لِذَلِكَ أُحِبُّهُ.','➡️',1],
+['أَوَّلًا ... ثَانِيًا','First ... Second','أَوَّلًا أَحْجِزُ، ثَانِيًا أُسَافِرُ.','📋',1],
+['مِثْل','Such as / Like','أُحِبُّ الْمُدُنَ مِثْلَ دُبَيّ.','🔁',1]]
+};
+let id=0;const W=[];ORDER.forEach(c=>D[c].forEach(r=>W.push({id:++id,ar:r[0],en:r[1],ex:r[2],ic:r[3],add:r[4],cat:c})));
+
+const MODEL='فِي الْمَاضِي كَانَ السَّفَرُ صَعْبًا وَيَحْتَاجُ إِلَى جُهْدٍ وَوَقْتٍ. فِي الْحَاضِرِ، بِسَبَبِ تَطَوُّرِ التِّكْنُولُوجْيَا، أَصْبَحَ السَّفَرُ أَسْهَلَ، فَنَسْتَخْدِمُ الطَّائِرَاتِ وَالسَّيَّارَاتِ وَالْحَافِلَاتِ لِلِانْتِقَالِ مِنْ مَكَانٍ إِلَى آخَرَ. لِلسَّفَرِ فَوَائِدُ كَثِيرَةٌ: اكْتِشَافُ ثَقَافَاتٍ مُخْتَلِفَةٍ، وَالتَّرْفِيهُ عَنِ النَّفْسِ، وَتَحْصِيلُ الْعِلْمِ، وَاكْتِسَابُ الْخِبْرَاتِ، وَتَكْوِينُ صَدَاقَاتٍ جَدِيدَةٍ. مِنْ وَجْهَةِ نَظَرِي، السَّفَرُ مُهِمٌّ، وَأُحِبُّ زِيَارَةَ الْوُجْهَاتِ السِّيَاحِيَّةِ.';
+document.getElementById('mp').innerHTML=MODEL.replace(/(فِي الْمَاضِي|فِي الْحَاضِرِ|مِنْ وَجْهَةِ نَظَرِي)/g,'<mark>$1</mark>');
+document.getElementById('lg').innerHTML=ORDER.map(c=>`<span><i style="background:${CATS[c].c}"></i>${CATS[c].l.slice(3)}</span>`).join('');
+
+let cur='all',synth=window.speechSynthesis,playing=null,keep=null,warned=false;
+const M=['hamdan','hamed','shakir','naayf','maged','majed','tarik','tariq','omar','salem','fahed','jamal','khalid','youssef','male'];
+const F=['fatima','zariyah','hoda','salma','laila','layla','mariam','maryam','amal','noor','sara','female'];
+function voices(){return synth?synth.getVoices().filter(v=>/^ar([-_]|$)/i.test(v.lang)||/arab|عرب/i.test(v.name)):[]}
+function score(v){const n=v.name.toLowerCase();let s=0;if(/female/.test(n)||F.some(h=>n.includes(h)))s-=10;else if(M.some(h=>n.includes(h)))s+=10;if(/^ar[-_]ae/i.test(v.lang))s+=3;else if(/^ar[-_]sa/i.test(v.lang))s+=2;else if(/^ar[-_]eg/i.test(v.lang))s+=1;if(/natural|online/.test(n))s+=2;return s}
+function pick(){const l=voices();return l.length?l.sort((a,b)=>score(b)-score(a))[0]:null}
+function reset(){if(playing){playing.classList.remove('playing');const b=playing.querySelector('.ab');if(b)b.classList.remove('pl');playing=null}}
+function speak(t,el){
+  if(!synth||typeof SpeechSynthesisUtterance==='undefined'){alert('هذا المتصفح لا يدعم النطق الصوتي. جرّب Microsoft Edge أو Google Chrome.');return}
+  synth.cancel();reset();
+  const v=pick();
+  if(!v&&!warned&&synth.getVoices().length){warned=true;alert('لا يوجد صوت عربي على هذا الجهاز.\nجرّب متصفح Microsoft Edge.')}
+  const u=new SpeechSynthesisUtterance(t);u.lang=v?v.lang:'ar-SA';u.rate=.82;if(v)u.voice=v;keep=u;
+  const b=el?el.querySelector('.ab'):null;
+  const done=()=>{if(el)el.classList.remove('playing');if(b)b.classList.remove('pl');if(playing===el)playing=null};
+  if(el){playing=el;el.classList.add('playing');if(b)b.classList.add('pl');u.onend=done}
+  u.onerror=done;
+  setTimeout(()=>{synth.resume();synth.speak(u)},80);
+}
+function play(i){const w=W.find(x=>x.id===i),c=document.getElementById('c'+i);
+  if(document.body.classList.contains('quiz'))c.querySelector('.en').classList.add('show');
+  speak(w.ar+'. '+w.ex,c)}
+function toggleQuiz(){const q=document.body.classList.toggle('quiz');
+  document.getElementById('qb').textContent=q?'👀 إظهار الإنجليزي':'🎯 وضع التحدي';
+  document.querySelectorAll('.en.show').forEach(e=>e.classList.remove('show'))}
+function filters(){document.getElementById('fr').innerHTML=Object.entries(CATS).map(([k,v])=>`<button class="ft${k===cur?' on':''}" onclick="setF('${k}')">${v.l}</button>`).join('')}
+function setF(k){cur=k;filters();render()}
+function render(){
+  const q=document.getElementById('q').value.trim().toLowerCase();
+  const f=W.filter(w=>(cur==='all'||w.cat===cur)&&(!q||w.ar.includes(q)||w.en.toLowerCase().includes(q)||w.ex.includes(q)));
+  document.getElementById('cnt').textContent=f.length+' كلمة';
+  const g=document.getElementById('g');
+  if(!f.length){g.innerHTML='<div class="nr">🔍 لا توجد نتائج للبحث</div>';return}
+  let h='',last='';
+  f.forEach(w=>{
+    if(cur==='all'&&w.cat!==last){h+=`<div class="sd"><span>${TITLES[w.cat]}</span></div>`;last=w.cat}
+    h+=`<div class="card" id="c${w.id}" onclick="play(${w.id})"><i class="dot" style="background:${CATS[w.cat].c}"></i>${w.add?'<span class="add">⭐ إضافة</span>':''}<div class="ic">${w.ic}</div><div class="w">${w.ar}</div><span class="en">${w.en}</span><div class="ex">${w.ex}</div><button class="ab" onclick="event.stopPropagation();play(${w.id})" aria-label="استمع"><svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg></button></div>`;
+  });
+  g.innerHTML=h;
+}
+if(synth){synth.getVoices();synth.onvoiceschanged=()=>synth.getVoices()}
+filters();render();
+</script>
+</body>
+</html>
